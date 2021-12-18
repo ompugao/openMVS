@@ -180,7 +180,7 @@ class StepsStore:
         self.steps_data = [
             ["Intrinsics analysis",          # 0
              os.path.join(OPENMVG_BIN, "openMVG_main_SfMInit_ImageListing"),
-             ["-i", "%input_dir%", "-o", "%matches_dir%", "-d", "%camera_file_params%"]],
+             ["-i", "%input_dir%", "-o", "%matches_dir%", "-k", "974.8590087890625;0.0;1021.5167846679688;0.0;974.8311767578125;775.5643310546875;0.0;0.0;1.0"]], # "-d", "%camera_file_params%"]],
             ["Compute features",             # 1
              os.path.join(OPENMVG_BIN, "openMVG_main_ComputeFeatures"),
              ["-i", "%matches_dir%/sfm_data.json", "-o", "%matches_dir%", "-m", "SIFT", "-n", "4"]],
