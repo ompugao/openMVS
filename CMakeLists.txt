@@ -99,6 +99,8 @@ if(OpenMVS_USE_CUDA)
 		INCLUDE_DIRECTORIES(${CUDA_INCLUDE_DIRS})
 		ADD_DEFINITIONS(-D_USE_CUDA)
 		SET(_USE_CUDA TRUE)
+		SET(CUDA_CUDA_LIBRARY "${CUDA_CUDA_LIBRARY} -lcuda") # see https://github.com/cdcseacave/openMVS/issues/147
+		LIST(APPEND OpenMVS_EXTRA_LIBS ${CUDA_CUDA_LIBRARY})
 	else()
 		SET(CUDA_CUDA_LIBRARY "")
 		MESSAGE("-- Can't find CUDA. Continuing without it.")
