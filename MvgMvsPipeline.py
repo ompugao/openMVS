@@ -186,13 +186,13 @@ class StepsStore:
              ["-i", "%matches_dir%/sfm_data.json", "-o", "%matches_dir%", "-m", "SIFT", "-n", "4"]],
             ["Compute matches",              # 2
              os.path.join(OPENMVG_BIN, "openMVG_main_ComputeMatches"),
-             ["-i", "%matches_dir%/sfm_data.json", "-o", "%matches_dir%", "-n", "HNSWL2", "-r", ".8"]],
+             ["-i", "%matches_dir%/sfm_data.json", "-o", "%matches_dir%/matches.bin", "-n", "HNSWL2", "-r", ".8"]],
             ["Incremental reconstruction",   # 3
-             os.path.join(OPENMVG_BIN, "openMVG_main_IncrementalSfM"),
-             ["-i", "%matches_dir%/sfm_data.json", "-m", "%matches_dir%", "-o", "%reconstruction_dir%"]],
+             os.path.join(OPENMVG_BIN, "openMVG_main_SfM"),
+             ["--sfm_engine", "INCREMENTAL", "-i", "%matches_dir%/sfm_data.json", "-m", "%matches_dir%", "-M", "matches.bin", "-o", "%reconstruction_dir%"]],
             ["Global reconstruction",        # 4
              os.path.join(OPENMVG_BIN, "openMVG_main_GlobalSfM"),
-             ["-i", "%matches_dir%/sfm_data.json", "-m", "%matches_dir%", "-o", "%reconstruction_dir%"]],
+             ["-i", "%matches_dir%/sfm_data.json", "-m", "%matches_dir%/matches.bin", "-o", "%reconstruction_dir%"]],
             ["Colorize Structure",           # 5
              os.path.join(OPENMVG_BIN, "openMVG_main_ComputeSfM_DataColor"),
              ["-i", "%reconstruction_dir%/sfm_data.bin", "-o", "%reconstruction_dir%/colorized.ply"]],
